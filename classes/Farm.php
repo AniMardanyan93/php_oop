@@ -1,23 +1,30 @@
 <?php 
-
-class Farm{
-
-    public $animal;
+class Farm
+{
+    public $productStart;
+    public $productEnd;
+    public $productName;
     public $count;
-    public $product;
+    public static $id = 0;
+    public $array = [];
 
-    public function __construct($animal, $count, $product)
+    public function __construct($productName, $productStart, $productEnd,$count)
     {
-        $this->animal = $animal;
-        $this->count = $count;
-        $this->product = $product;
         
+        array_push($this->array, ++self::$id);
+
+        $this->productName = $productName;
+        $this->productStart = $productStart;
+        $this->productEnd = $productEnd;
+        $this->count = $count;
     }
-    // public function getInfo(){
-    //     echo 'OK';
-    // }
+
+    public function getAnimalInfo()
+    {
+        $product = mt_rand($this->productStart, $this->productEnd);
+        return    'During a day give ' .$product  . ' ' . $this->productName . '<pre></pre>' .
+                  'During 7 day give ' . ($product  *7) . ' ' . $this->productName . '<pre></pre>'.
+                  'During 7 day they all give ' . ($product  *7 * $this->count) . ' ' . $this->productName . '<pre></pre>';
+    }
 }
-
-
 ?>
-

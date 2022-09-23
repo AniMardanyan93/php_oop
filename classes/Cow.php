@@ -1,22 +1,27 @@
 <?php
-    class Cow extends Farm{
-
-        public $prodactName;
-
-        public function __construct($animal, $count, $product, $prodactName)
+   class Cow extends Farm
+   {
+        public $productStart;
+        public $productEnd;
+        public $producName;
+        public static $countOfCow = 0;
+   
+        public function __construct($producName = 'milk',$productStart = 8,$productEnd = 10)
         {
-            parent::__construct($animal, $count, $product);
-
-
-            $this->$prodactName;
+    
+            ++self::$countOfCow ;
+            
+            parent::__construct($producName,$productStart,$productEnd,self::$countOfCow);
+    
         }
-
-        public function getInfo(){
-            echo 'In the farm we have    ' .  $this->count .  $this->animal  . ' <pre></pre>' .
-                    'During a day they give    ' . ($this->count * $this->product). ' liter ' . $this->prodactName. ' <pre></pre>' .
-                    'During a 7 day they give    ' . ($this->count * $this->product *7). ' liter ' . $this->prodactName. ' <pre></pre>' 
-            ;
+    
+        public function getAnimalInfo()
+        {
+            echo parent::getAnimalInfo() . 
+                'We have ' . self::$countOfCow . ' cow';
+    
         }
-    }
+   }
+   
 ?>
 
